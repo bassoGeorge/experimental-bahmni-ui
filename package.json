@@ -6,6 +6,11 @@
   "author": "Anish George <anishgeo@thoughtworks.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "16"
+    "@storybook/react": "6.5",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  },
+  "scripts": {
+    "start-storybook": "start-storybook -p 6006"
   }
 }
