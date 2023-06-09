@@ -1,14 +1,22 @@
 const path = require("path");
+const cssExtract = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
     library: "BahmniNextUI",
     libraryTarget: "umd",
     umdNamedDefine: true,
+    clean: true,
   },
+  plugins: [
+    new cssExtract({
+      filename: "styles.css",
+    }),
+  ],
   module: {
     rules: [
       {
@@ -26,24 +34,12 @@ module.exports = {
         },
       },
       {
-        test: /\.(css|s[ac]ss)$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          // {
-          //   loader: "postcss-loader",
-          //   options: {
-          //     postcssOptions: {
-          //       plugins: {
-          //         "postcss-prefix-selector": {
-          //           prefix: ".bahmni-scoped",
-          //           exclude: [":root", "html", "body"],
-          //         },
-          //       },
-          //     },
-          //   },
-          // },
-        ],
+        test: /\.css$/i,
+        use: [cssExtract.loader, "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [cssExtract.loader, "css-loader", "sass-loader"],
       },
     ],
   },
