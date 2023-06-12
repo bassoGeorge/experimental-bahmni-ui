@@ -16,6 +16,7 @@ jobs:
         with:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - id: versionCheck
+        name: Check if version has been updated
         uses: EndBug/version-check@v2
         with:
           file-url: https://unpkg.com/experimental-bahmni-next-ui@latest/package.json
