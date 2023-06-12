@@ -16,6 +16,7 @@ runs:
       with:
         node-version: '14.x'
         cache: 'yarn'
+        token: ${{ inputs.NPM_TOKEN }}
     - name: Debugging
       shell: bash
       env:
