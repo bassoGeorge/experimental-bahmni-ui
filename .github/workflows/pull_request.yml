@@ -23,11 +23,13 @@ jobs:
         with:
           file-url: https://unpkg.com/experimental-bahmni-next-ui@latest/package.json
           static-checking: localIsNew
-      - name: Yes Version has changed
-        if: steps.versionCheck.outputs.changed == 'true'
-        run: echo "The version being deployed has changed"
+      - name: Version guard
+        if: steps.versionCheck.outputs.changed == 'false'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('No version change detected. Currently published version is ${{ steps.versionCheck.outputs.version }}. You should run `yarn bump:<patch|minor|major>` to bump the version.')
       - name: Publish
-        if: steps.versionCheck.outputs.changed == 'true'
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
