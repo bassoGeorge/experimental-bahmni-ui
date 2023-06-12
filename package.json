@@ -1,6 +1,6 @@
 {
   "name": "experimental-bahmni-next-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Next generation ui components for OpenMRS and Bahmni",
   "main": "dist/index.js",
   "author": "Anish George <anishgeo@thoughtworks.com>",
