@@ -18,3 +18,6 @@ yarn link react-dom
 cd <project-dir>
 yarn link bahmni-next-ui
 ```
+
+
+### Debug changes
