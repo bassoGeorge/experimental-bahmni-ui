@@ -28,7 +28,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('No version change detected. Currently published version is ${{ steps.versionCheck.outputs.version }}. You should run `yarn bump:<patch|minor|major>` to bump the version.')
+            core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
       - name: Publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
