@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start-storybook": "start-storybook -p 6006",
-    "prepare": "npm run build",
+    "prepack": "yarn build",
     "build": "webpack --mode production",
     "util:tag-reminder": "echo \"Don't forget to push the latest tag, run -- git push origin $(git describe --tags --abbrev=0)\"",
     "bump:patch": "yarn version --patch && yarn util:tag-reminder",

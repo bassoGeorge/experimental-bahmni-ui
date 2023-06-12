@@ -26,3 +26,10 @@ jobs:
       - name: Yes Version has changed
         if: steps.versionCheck.outputs.changed == 'true'
         run: echo "The version being deployed has changed"
+      - name: Publish
+        if: steps.versionCheck.outputs.changed == 'true'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "Publishing..."
+          yarn publish --new-version ${{ steps.versionCheck.outputs.version }}
