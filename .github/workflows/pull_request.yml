@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - feature/fix-tagging
 
 jobs:
   PR:
@@ -16,6 +19,7 @@ jobs:
         with:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - id: versionCheck
+        name: Check if version has been updated
         uses: EndBug/version-check@v2
         with:
           file-url: https://unpkg.com/experimental-bahmni-next-ui@latest/package.json
@@ -26,3 +30,15 @@ jobs:
         with:
           script: |
             core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
+      - name: Create Tag
+        uses: actions/github-script@v3
+        env:
+          VERSION: ${{ steps.versionCheck.outputs.version }}
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v' + process.env.VERSION,
+              sha: context.sha
+            })
