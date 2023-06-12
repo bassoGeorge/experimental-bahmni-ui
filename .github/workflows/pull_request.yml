@@ -31,7 +31,7 @@ jobs:
           script: |
             core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
       - name: Create Tag
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         env:
           VERSION: ${{ steps.versionCheck.outputs.version }}
         with:
