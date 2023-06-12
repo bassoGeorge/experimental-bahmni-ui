@@ -8,6 +8,8 @@ on:
 jobs:
   Production:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write        # Allows the github token to be used to create a tag
     steps:
       - name: ⬇️ Check out repository code
         uses: actions/checkout@v3
@@ -32,3 +34,15 @@ jobs:
         run: |
           echo "Publishing..."
           yarn publish --new-version ${{ steps.versionCheck.outputs.version }}
+      - name: Create Tag
+        uses: actions/github-script@v5
+        env:
+          VERSION: ${{ steps.versionCheck.outputs.version }}
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v' + process.env.VERSION,
+              sha: context.sha
+            })

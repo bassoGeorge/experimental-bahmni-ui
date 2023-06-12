@@ -4,15 +4,10 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - feature/fix-tagging
 
 jobs:
   PR:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: ⬇️ Check out repository code
         uses: actions/checkout@v3
@@ -32,15 +27,3 @@ jobs:
         with:
           script: |
             core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
-      - name: Create Tag
-        uses: actions/github-script@v5
-        env:
-          VERSION: ${{ steps.versionCheck.outputs.version }}
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/v' + process.env.VERSION,
-              sha: context.sha
-            })
