@@ -17,4 +17,4 @@ runs:
       shell: bash
       run: yarn install --frozen-lockfile
       env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
