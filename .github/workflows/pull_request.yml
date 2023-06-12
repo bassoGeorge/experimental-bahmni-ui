@@ -18,7 +18,6 @@ jobs:
         uses: ./.github/actions/install-dependencies
         with:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          debug: "--DEBUG_VARIABLE--"
       - id: versionCheck
         uses: EndBug/version-check@v2
         with:

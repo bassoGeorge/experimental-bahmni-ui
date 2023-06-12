@@ -4,9 +4,6 @@ inputs:
   NPM_TOKEN:
     required: true
     description: 'Auth token for npm'
-  debug:
-    required: true
-    description: 'Just to test things'
 
 runs:
   using: 'composite'
@@ -18,17 +15,8 @@ runs:
       with:
         node-version: '14.x'
         cache: 'yarn'
-    - name: Debugging
-      shell: bash
-      env:
-        DEBUG: ${{ inputs.debug }}
-        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
-      run: |
-        echo "Here is the debug variable: $DEBUG"
-        echo "And here is the npm token: $NPM_TOKEN"
     - name: 📥 Install dependencies
       shell: bash
       run: yarn install --frozen-lockfile
-      # env:
-        # NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
-        # debug: ${{ inputs.debug }}
+      env:
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
