@@ -2,7 +2,7 @@ import React from 'react';
 import './TestComp.scss';
 import { Switch, ContentSwitcher } from 'carbon-components-react';
 
-export function TestComponent() {
+export function TestComp() {
   return (
     <div className='test-comp'>
       <h3>Hello World!</h3>

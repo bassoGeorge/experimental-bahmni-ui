@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write        # Allows the github token to be used to create a tag
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: ⬇️ Check out repository code
         uses: actions/checkout@v3
@@ -28,6 +30,8 @@ jobs:
         with:
           script: |
             core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version')
+      - name: 🧪 Run tests
+        run: yarn test
       - name: Publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
