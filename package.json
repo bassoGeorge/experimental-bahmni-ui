@@ -37,9 +37,10 @@
     "start-storybook": "start-storybook -p 6006",
     "prepare": "npm run build",
     "build": "webpack --mode production",
-    "bump:patch": "yarn version --patch",
-    "bump:minor": "yarn version --minor",
-    "bump:major": "yarn version --major"
+    "util:tag-reminder": "echo \"Don't forget to push the latest tag, run -- git push origin $(git describe --tags --abbrev=0)\"",
+    "bump:patch": "yarn version --patch && yarn util:tag-reminder",
+    "bump:minor": "yarn version --minor && yarn util:tag-reminder",
+    "bump:major": "yarn version --major && yarn util:tag-reminder"
   },
   "exports": {
     ".": {
