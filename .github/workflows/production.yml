@@ -1,7 +1,7 @@
-name: Pull Request on Main
+name: Production publish
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -25,4 +25,10 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
+            core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version')
+      - name: Publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "Publishing..."
+          yarn publish --new-version ${{ steps.versionCheck.outputs.version }}
