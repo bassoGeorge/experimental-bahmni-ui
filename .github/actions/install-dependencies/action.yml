@@ -13,10 +13,11 @@ runs:
   steps:
     - name: ⎔ Use Node.js
       uses: actions/setup-node@v3
+      env:
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       with:
         node-version: '14.x'
         cache: 'yarn'
-        token: ${{ inputs.NPM_TOKEN }}
     - name: Debugging
       shell: bash
       env:
@@ -28,6 +29,6 @@ runs:
     - name: 📥 Install dependencies
       shell: bash
       run: yarn install --frozen-lockfile
-      env:
-        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
-        debug: ${{ inputs.debug }}
+      # env:
+        # NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
+        # debug: ${{ inputs.debug }}
