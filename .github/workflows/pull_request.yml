@@ -27,3 +27,5 @@ jobs:
         with:
           script: |
             core.setFailed('No version change detected. You should run `yarn bump:<patch|minor|major>` to bump the version before raising PR to main')
+      - name: 🧪 Run tests
+        run: yarn test
