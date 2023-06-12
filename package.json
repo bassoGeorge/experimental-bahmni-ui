@@ -36,7 +36,10 @@
   "scripts": {
     "start-storybook": "start-storybook -p 6006",
     "prepare": "npm run build",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "bump:patch": "yarn version --patch",
+    "bump:minor": "yarn version --minor",
+    "bump:major": "yarn version --major"
   },
   "exports": {
     ".": {
