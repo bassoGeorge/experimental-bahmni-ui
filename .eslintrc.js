@@ -5,7 +5,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
@@ -22,7 +22,7 @@ module.exports = {
       files: ["*.spec.js", "*.spec.jsx"],
       plugins: ["jest"],
       extends: ["plugin:jest/recommended"],
-      rules: {}
-    }
-  ]
+      rules: {},
+    },
+  ],
 };
