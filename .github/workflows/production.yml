@@ -9,16 +9,12 @@ jobs:
   Production:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # Allows the github token to be used to create a tag
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      contents: write # Allows the github token to be used to create a tag
     steps:
       - name: ⬇️ Check out repository code
         uses: actions/checkout@v3
       - name: 📦 Install dependencies
         uses: ./.github/actions/install-dependencies
-        with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - id: versionCheck
         uses: EndBug/version-check@v2
         with:
@@ -36,7 +32,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Publishing..."
+          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           yarn publish --new-version ${{ steps.versionCheck.outputs.version }}
       - name: Create Tag
         uses: actions/github-script@v5
