@@ -8,6 +8,9 @@ exports[`TestComp matches snapshot 1`] = `
     <h3>
       Hello World!
     </h3>
+    <span>
+      Random
+    </span>
     <div
       class="bx--content-switcher"
       role="tablist"
