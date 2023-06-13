@@ -1,6 +1,13 @@
 module.exports = {
   root: true,
-  ignorePatterns: ["node_modules/*", "dist/*", ".storybook/*", ".*"],
+  ignorePatterns: [
+    "node_modules/*",
+    "dist/*",
+    ".storybook/*",
+    "__mocks__/*",
+    "*.config.js",
+    ".*",
+  ],
   env: {
     browser: true,
     es2021: true,

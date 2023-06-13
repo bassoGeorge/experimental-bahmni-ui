@@ -1,9 +1,9 @@
-import React from 'react';
-import { TestComp } from './TestComp';
+import React from "react";
+import { TestComp } from "./TestComp";
 
 export default {
-  title: 'TestComp',
+  title: "TestComp",
   component: TestComp,
-}
+};
 
 export const Primary = () => <TestComp />;
